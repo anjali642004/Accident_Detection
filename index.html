@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .video-container {
+            border: 2px solid black;
+            margin: auto;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .alert-box {
+            font-size: 18px;
+            color: white;
+            background: red;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .tracking, .stats, .procedure {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-white text-center p-3">
+        <h1>Accident Detection & Emergency Alert System</h1>
+        <p>AI-powered real-time accident detection and emergency response</p>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Tracking Information</h2>
+                <div class="tracking">
+                    <p><strong>Tracking ID:</strong> <span id="trackingId">AD-1234</span></p>
+                    <p><strong>Location:</strong> <span id="location">New York, USA</span></p>
+                    <p><strong>GPS Coordinates:</strong> <span id="gps">40.7128° N, 74.0060° W</span></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>System Performance</h2>
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Accident Statistics</h2>
+                <div class="stats">
+                    <p><strong>Accidents Today:</strong> <span id="accidentsToday">5</span></p>
+                    <p><strong>Affected Location:</strong> <span id="mostAffected">Warangal</span></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Detected Accident Image</h2>
+                <img src="accident.jpg" alt="Accident Detected" class="img-fluid">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Live CCTV Monitoring</h2>
+                <div class="video-container">
+                    <video id="cctvFeed" autoplay loop width="100%">
+                        <source src="accidentvi.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div id="alertBox" class="alert-box">🚨 Accident Detected! Notifying Emergency Services...</div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Accident Location on Map</h2>
+                <img src="gps.jpg" width="500px" height="100px" class="img-fluid">
+                <button class="btn btn-primary mt-3" onclick="trackLocation()">Track Location</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>How It Works</h2>
+                <div class="procedure">
+                    <p><strong>1.</strong> The system continuously monitors live CCTV footage.</p>
+                    <p><strong>2.</strong> AI algorithms analyze video frames in real-time to detect accidents.</p>
+                    <p><strong>3.</strong> Upon accident detection, the system extracts the location from the camera's IP address.</p>
+                    <p><strong>4.</strong> An alert is triggered with a unique tracking ID and GPS coordinates.</p>
+                    <p><strong>5.</strong> Emergency services (ambulance, police) are notified immediately to respond to the accident site.</p>
+                    <p><strong>6.</strong> The system logs data for further analysis and improvements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p>&copy; 2025 Accident Detection AI. All rights reserved.</p>
+    </footer>
+    <script>
+        function trackLocation() {
+            alert('Tracking accident location: 40.7128° N, 74.0060° W');
+            window.open('https://www.google.com/maps?q=40.7128,-74.0060', '_blank');
+        }
+
+        var ctx = document.getElementById('chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Detection Accuracy', 'Response Time (sec)', 'Notifications Sent'],
+                datasets: [{
+                    label: 'System Performance',
+                    data: [97, 25, 200],
+                    backgroundColor: ['blue', 'green', 'red']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
